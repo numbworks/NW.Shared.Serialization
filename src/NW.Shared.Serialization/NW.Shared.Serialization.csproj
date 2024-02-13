@@ -12,7 +12,7 @@
     <PackageIconUrl>https://raw.githubusercontent.com/numbworks/numbworks/master/numbworks_logo_128x128px.png</PackageIconUrl>	
     <PackageProjectUrl>https://github.com/numbworks/NW.Shared.Serialization</PackageProjectUrl>
     <RepositoryUrl>https://github.com/numbworks/NW.Shared.Serialization</RepositoryUrl>
-    <PackageTags>csharp library serialization serializer JsonSerializer</PackageTags>
+    <PackageTags>csharp library serialization serializer system.text.json.jsonserializer</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <IsPackable>true</IsPackable>	

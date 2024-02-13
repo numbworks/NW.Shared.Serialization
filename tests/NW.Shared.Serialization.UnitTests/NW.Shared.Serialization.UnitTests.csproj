@@ -12,7 +12,7 @@
     <Copyright>numbworks 2024</Copyright>
     <PackageProjectUrl>https://github.com/numbworks/NW.Shared.Serialization</PackageProjectUrl>
     <RepositoryUrl>https://github.com/numbworks/NW.Shared.Serialization</RepositoryUrl>
-    <PackageTags>csharp library serialization serializer JsonSerializer</PackageTags>
+    <PackageTags>csharp library serialization serializer system.text.json.jsonserializer</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
