@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using NW.Shared.Serialization.JsonSerializerConverters;
+using System.Text.Json.Serialization;
 using NW.Shared.Validation;
 
 namespace NW.Shared.Serialization
@@ -16,14 +18,29 @@ namespace NW.Shared.Serialization
 
         #region Properties
 
+        public JsonSerializerOptions JsonSerializerOptions { get; }
+
+        /// <summary>Uses <see cref="JsonStringEnumConverter"/> and <see cref="DateTimeToDateConverter"/>.</summary>
+        public static JsonSerializerOptions DefaultJsonSerializerOptions { get; } = CreateDefaultJsonSerializerOptions();
         public static List<T> Default { get; } = null;
 
         #endregion
 
         #region Constructors
 
-        /// <summary>Initializes a <see cref="Serializer{T}"/> instance using default parameters.</summary>	
-        public Serializer() { }
+        /// <summary>Initializes a <see cref="Serializer{T}"/> instance.</summary>	
+        public Serializer(JsonSerializerOptions jsonSerializerOptions)
+        {
+
+            Validator.ValidateObject(jsonSerializerOptions, nameof(jsonSerializerOptions));
+
+            JsonSerializerOptions = jsonSerializerOptions;
+
+        }
+
+        /// <summary>Initializes a <see cref="Serializer{T}"/> instance using <see cref="DefaultJsonSerializerOptions"/>.</summary>	
+        public Serializer()
+            : this(jsonSerializerOptions: DefaultJsonSerializerOptions) { }
 
         #endregion
 
@@ -34,7 +51,7 @@ namespace NW.Shared.Serialization
 
             Validator.ValidateObject(obj, nameof(obj));
 
-            string json = JsonSerializer.Serialize(obj, CreateJsonSerializerOptions());
+            string json = JsonSerializer.Serialize(obj, JsonSerializerOptions);
 
             return json;
 
@@ -44,7 +61,7 @@ namespace NW.Shared.Serialization
 
             Validator.ValidateList(objects, nameof(objects));
 
-            string json = JsonSerializer.Serialize(objects, CreateJsonSerializerOptions());
+            string json = JsonSerializer.Serialize(objects, JsonSerializerOptions);
 
             return json;
 
@@ -56,7 +73,7 @@ namespace NW.Shared.Serialization
             try
             {
 
-                List<T> objects = JsonSerializer.Deserialize<List<T>>(json, CreateJsonSerializerOptions());
+                List<T> objects = JsonSerializer.Deserialize<List<T>>(json, JsonSerializerOptions);
 
                 if (objects.Count == 0)
                     return Default;
@@ -78,7 +95,7 @@ namespace NW.Shared.Serialization
             try
             {
 
-                T obj = JsonSerializer.Deserialize<T>(json, CreateJsonSerializerOptions());
+                T obj = JsonSerializer.Deserialize<T>(json, JsonSerializerOptions);
 
                 return obj;
 
@@ -96,12 +113,14 @@ namespace NW.Shared.Serialization
 
         #region Methods_private
 
-        private JsonSerializerOptions CreateJsonSerializerOptions()
+        private static JsonSerializerOptions CreateDefaultJsonSerializerOptions()
         {
 
             JsonSerializerOptions options = new JsonSerializerOptions();
 
             options.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+            options.Converters.Add(new JsonStringEnumConverter());
+            options.Converters.Add(new DateTimeToDateConverter());
             options.WriteIndented = true;
 
             return options;
@@ -115,5 +134,5 @@ namespace NW.Shared.Serialization
 
 /*
     Author: numbworks@gmail.com
-    Last Update: 12.02.2024
+    Last Update: 13.02.2024
 */
