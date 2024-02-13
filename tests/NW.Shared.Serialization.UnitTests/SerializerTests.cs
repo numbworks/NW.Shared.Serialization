@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using NW.NGramTextClassification.LabeledExamples;
 using NW.NGramTextClassification.NGramTokenization;
 using NW.NGramTextClassification.TextClassifications;
 using NW.NGramTextClassification.TextSnippets;
-using NUnit.Framework;
-
 using NW.Shared.Serialization.UnitTests.Utilities;
+using NUnit.Framework;
 
 namespace NW.Shared.Serialization.UnitTests
 {
@@ -16,6 +16,17 @@ namespace NW.Shared.Serialization.UnitTests
 
         #region Fields
 
+        private static TestCaseData[] serializerExceptionTestCases =
+        {
+
+            new TestCaseData(
+                new TestDelegate(
+                        () => new Serializer<LabeledExample>(jsonSerializerOptions: null)),
+                typeof(ArgumentNullException),
+                new ArgumentNullException("jsonSerializerOptions").Message
+                ).SetArgDisplayNames($"{nameof(serializerExceptionTestCases)}_01"),
+
+        };
         private static TestCaseData[] serializeExceptionTestCases =
         {
 
@@ -83,10 +94,37 @@ namespace NW.Shared.Serialization.UnitTests
 
         #region Tests
 
+        [TestCaseSource(nameof(serializerExceptionTestCases))]
+        public void Serializer_ShouldThrowACertainException_WhenUnproperArguments
+            (TestDelegate del, Type expectedType, string expectedMessage)
+                => ObjectMother.Method_ShouldThrowACertainException_WhenUnproperArguments(del, expectedType, expectedMessage);
+
         [TestCaseSource(nameof(serializeExceptionTestCases))]
         public void Serialize_ShouldThrowACertainException_WhenUnproperArguments
             (TestDelegate del, Type expectedType, string expectedMessage)
                 => ObjectMother.Method_ShouldThrowACertainException_WhenUnproperArguments(del, expectedType, expectedMessage);
+
+        [Test]
+        public void Serializer_ShouldCreateAnObjectOfTypeSerializer_WhenInvoked()
+        {
+
+            // Arrange
+            // Act
+            Serializer<LabeledExample> actual1 = new Serializer<LabeledExample>();
+            Serializer<LabeledExample> actual2 = new Serializer<LabeledExample>(
+                jsonSerializerOptions: Serializer<LabeledExample>.DefaultJsonSerializerOptions);
+
+            // Assert
+            Assert.That(actual1, Is.InstanceOf<Serializer<LabeledExample>>());
+            Assert.That(actual1.JsonSerializerOptions, Is.InstanceOf<JsonSerializerOptions>());
+
+            Assert.That(actual2, Is.InstanceOf<Serializer<LabeledExample>>());
+            Assert.That(actual2.JsonSerializerOptions, Is.InstanceOf<JsonSerializerOptions>());
+
+            Assert.That(Serializer<LabeledExample>.DefaultJsonSerializerOptions, Is.InstanceOf<JsonSerializerOptions>());
+            Assert.That(Serializer<LabeledExample>.Default, Is.Null);
+
+        }
 
         [Test]
         public void Serialize_ShouldReturnExpectedString_WhenArgumentIsCollectionAndTypeIsLabeledExample()
