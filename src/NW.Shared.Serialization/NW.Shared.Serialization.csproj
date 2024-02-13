@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <Authors>numbworks</Authors>
+    <Version>1.0.0</Version>
+    <Company>numbworks</Company>
+    <Description>NW.Shared.Serialization is a library that provides a facade over JsonSerializer in order to simplify serialization and deserialization activities.</Description>
+    <Copyright>numbworks 2024</Copyright>
+    <PackageIconUrl>https://raw.githubusercontent.com/numbworks/numbworks/master/numbworks_logo_128x128px.png</PackageIconUrl>	
+    <PackageProjectUrl>https://github.com/numbworks/NW.Shared.Serialization</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/numbworks/NW.Shared.Serialization</RepositoryUrl>
+    <PackageTags>csharp library serialization serializer JsonSerializer</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <IsPackable>true</IsPackable>	
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NW.Shared.Validation" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>

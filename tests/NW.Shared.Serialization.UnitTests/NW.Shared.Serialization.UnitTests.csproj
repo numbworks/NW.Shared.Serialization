@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <Version>1.0.0</Version>
+    <Authors>numbworks</Authors>
+    <Copyright>numbworks 2024</Copyright>
+    <PackageProjectUrl>https://github.com/numbworks/NW.Shared.Serialization</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/numbworks/NW.Shared.Serialization</RepositoryUrl>
+    <PackageTags>csharp library serialization serializer JsonSerializer</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="4.0.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\NW.Shared.Serialization\NW.Shared.Serialization.csproj" />
+  </ItemGroup>
+
+</Project>
