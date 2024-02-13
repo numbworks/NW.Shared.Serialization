@@ -28,7 +28,7 @@ namespace NW.Shared.Serialization.UnitTests.JsonSerializerConverters
         #region Tests
 
         [TestCaseSource(nameof(dateTimeToDateConverterExceptionTestCases))]
-        public void Serializer_ShouldThrowACertainException_WhenUnproperArguments
+        public void DateTimeToDateConverter_ShouldThrowACertainException_WhenUnproperArguments
             (TestDelegate del, Type expectedType, string expectedMessage)
                 => ObjectMother.Method_ShouldThrowACertainException_WhenUnproperArguments(del, expectedType, expectedMessage);
 
