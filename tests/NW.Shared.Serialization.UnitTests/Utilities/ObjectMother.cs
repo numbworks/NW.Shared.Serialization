@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using NW.NGramTextClassification.Bags;
 using NW.NGramTextClassification.LabeledExamples;
 using NW.NGramTextClassification.NGramTokenization;
+using NW.NGramTextClassification.Similarity;
 using NW.NGramTextClassification.TextSnippets;
 using NW.NGramTextClassification.TextClassifications;
 using NUnit.Framework;
-using NW.NGramTextClassification.Similarity;
 
 namespace NW.Shared.Serialization.UnitTests.Utilities
 {
