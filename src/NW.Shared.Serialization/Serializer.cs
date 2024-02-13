@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text.Encodings.Web;
 using System.Text.Json;
-using NW.Shared.Serialization.JsonSerializerConverters;
 using System.Text.Json.Serialization;
+using NW.Shared.Serialization.JsonSerializerConverters;
 using NW.Shared.Validation;
 
 namespace NW.Shared.Serialization
