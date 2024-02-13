@@ -10,13 +10,13 @@ Contact: numbworks@gmail.com
 
 | Date | Author | Description |
 |---|---|---|
-| 2024-02-09 | numbworks | Created. |
+| 2024-02-13 | numbworks | Created. |
 
 ## In Short
 
 From the documentation:
 
-> `NW.Shared.Serialization` is a library that provides a collection of adapters to overcome the limits of *System.IO.File* and *System.IO.FileInfo*.
+> `NW.Shared.Serialization` is a library that provides a facade over _System.Text.Json.JsonSerializer_ in order to simplify serialization and deserialization activities.
 
 ## Download the source code
 

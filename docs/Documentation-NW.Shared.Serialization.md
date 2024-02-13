@@ -9,7 +9,7 @@ Contact: numbworks@gmail.com
 
 ## Introduction
 
-`NW.Shared.Serialization` is a library that provides a facade over JsonSerializer in order to simplify serialization and deserialization activities.
+`NW.Shared.Serialization` is a library that provides a facade over _System.Text.Json.JsonSerializer_ in order to simplify serialization and deserialization activities.
 
 ## Getting Started
 
