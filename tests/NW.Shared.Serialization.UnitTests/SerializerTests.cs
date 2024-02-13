@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using NW.NGramTextClassification.LabeledExamples;
 using NW.NGramTextClassification.NGramTokenization;
-using NW.NGramTextClassification.Serializations;
+using NW.NGramTextClassification.TextClassifications;
 using NW.NGramTextClassification.TextSnippets;
 using NUnit.Framework;
 
@@ -142,8 +142,8 @@ namespace NW.Shared.Serialization.UnitTests
         {
 
             // Arrange
-            TextClassifierSession obj = TextClassifications.ObjectMother.TextClassifierSession_CompleteLabeledExamples00;
-            string expected = TextClassifications.ObjectMother.TextClassifierrSessionCLE00AsJson_Content;
+            TextClassifierSession obj = ObjectMother.TextClassifierSession_CompleteLabeledExamples00;
+            string expected = ObjectMother.TextClassifierrSessionCLE00AsJson_Content;
 
             // Act
             string actual = new Serializer<TextClassifierSession>().Serialize(obj: obj);
@@ -224,15 +224,15 @@ namespace NW.Shared.Serialization.UnitTests
         {
 
             // Arrange
-            string json = TextClassifications.ObjectMother.TokenizerRuleSetAsJson_Content;
-            NGramTokenizerRuleSet expected = TextClassifications.ObjectMother.TokenizerRuleSet;
+            string json = ObjectMother.TokenizerRuleSetAsJson_Content;
+            NGramTokenizerRuleSet expected = ObjectMother.TokenizerRuleSet;
 
             // Act
             NGramTokenizerRuleSet actual = new Serializer<NGramTokenizerRuleSet>().DeserializeOrDefault(json: json);
 
             // Assert
             Assert.That(
-                    NGramTokenization.ObjectMother.AreEqual(expected, actual),
+                    ObjectMother.AreEqual(expected, actual),
                     Is.True
                 );
 
@@ -249,5 +249,5 @@ namespace NW.Shared.Serialization.UnitTests
 
 /*
     Author: numbworks@gmail.com
-    Last Update: 31.01.2024
+    Last Update: 13.02.2024
 */
